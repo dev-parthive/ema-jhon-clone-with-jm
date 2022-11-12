@@ -1,0 +1,70 @@
+.form-container{
+    width: 500px;
+    height: 600px;
+    border: 1px solid #95A0A7;
+    border-radius: 8px;
+    margin: 40px auto;
+    color: #2A414F;
+}
+.form-title{
+    font-family: 'Lato', sans-serif;
+font-style: Regular;
+font-size: 35px;
+line-height: 42px;
+line-height: 100%;
+text-align: center;
+color: #2A414F;
+
+}
+.form-control{
+    margin-left: 40px;
+    margin-bottom: 20px;
+}
+
+.form-control label{
+    display: block;
+    font-size: 17px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+.form-control input{
+    width: 415px;
+height: 55px;
+border: 1px solid #95A0A7;
+border-radius: 5px;
+font-size: 1.3em;
+padding-left: 10px;
+color: #818181dd;
+outline: none;
+
+}
+
+.btn-submit{
+    width: 425px;
+height: 55px;
+background: rgba(255, 153, 0, 0.3);
+border-radius: 5px;
+border: none;
+cursor: pointer;
+color: #0E161A;
+font-size: 22px;
+font-family: 'Lato', sans-serif;
+}
+.btn-submit:hover{
+    background: rgba(255, 153, 0, 0.6);
+}
+.btn-submit-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    
+}
+.create-account-link{
+    text-align: center;
+    font-size: 17px;
+}
+
+.create-account-link a{
+    color: #FF9900;
+}
+
