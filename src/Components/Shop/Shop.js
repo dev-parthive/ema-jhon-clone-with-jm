@@ -23,12 +23,14 @@ const Shop = () => {
     const [cart, setCart] = useState([])
     const [page, setPage] = useState(0)
     const[size, setSize] = useState(10)
+    const [loading, setLoading] = useState(true)
 
     useEffect( ()=> {
         const url = `http://localhost:5000/products?page=${page}&size=${size}`
         fetch(url)
         .then( res => res.json())
         .then( data =>{
+            setLoading(false)
             setCount(data.count)
             setProducts(data.products)
         })
@@ -41,19 +43,34 @@ const Shop = () => {
         deleteShoppingCart();
     }
    
-     useEffect( ()=>{
-        const storedCart  = getStoredCart()
-        const savedCart = []
-        for(const id in storedCart){
-            const addedProduct = products.find(product => product._id ===  id);
-          
-            if(addedProduct){
-                const quantity = storedCart[id];
-                addedProduct.quantity = quantity;
-                savedCart.push(addedProduct)
+    useEffect(() => {
+        const storedCart = getStoredCart();
+        const savedCart = [];
+        const ids = Object.keys(storedCart)
+        console.log(ids)
+        fetch(`http://localhost:5000/productsByIds`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(ids)
+        })
+        .then(res => res.json())
+        .then(data => {
+             console.log('by ids', data)
+             for(const id in storedCart){
+                const addedProduct = data.find(product => product._id ===  id);
+              
+                if(addedProduct){
+                    const quantity = storedCart[id];
+                    addedProduct.quantity = quantity;
+                    savedCart.push(addedProduct)
+                }
             }
-        }
-        setCart(savedCart);
+            setCart(savedCart);
+        })
+       
+      
      }, [products])
 
 //declare a eventhandler 
@@ -75,6 +92,9 @@ const Shop = () => {
 
     return (
         <div className='shop-container'>
+           {
+            loading &&  <p style={{textAlign:'center' , color: 'red'}}>Loading.....</p>
+           }
             <div className="products-container">
             {
                 products.map(product => <Product handleAddToCart={handleAddToCart} product={product} key={product._id}></Product>)
