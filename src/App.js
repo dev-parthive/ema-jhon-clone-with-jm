@@ -24,9 +24,9 @@ function App() {
         },
         {
           path: '/shop', 
-          loader: async () =>{
-            return fetch ('http://localhost:5000/products')
-          },
+          // loader: async () =>{
+          //   return fetch ('http://localhost:5000/products')
+          // },
           element: <Shop></Shop>
         },
         {
