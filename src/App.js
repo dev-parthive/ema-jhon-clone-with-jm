@@ -19,13 +19,13 @@ function App() {
       children:  [
         {
           path: '/',
-          loader: () => fetch('products.json'),
+          loader: () => fetch('http://localhost:5000/products'),
           element: <Shop></Shop>
         },
         {
           path: '/shop', 
           loader: async () =>{
-            return fetch ('products.json')
+            return fetch ('http://localhost:5000/products')
           },
           element: <Shop></Shop>
         },
